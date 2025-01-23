@@ -18,6 +18,12 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private UserAccountService userAccountService;
+
+    /**
+     * 用户登录
+     * @param account
+     * @return
+     */
     @PostMapping("/login")
     public Result login(@RequestBody UserAccount account) {
         log.info("用户登录：{}", account);
@@ -34,5 +40,12 @@ public class LoginController {
 
         //登录失败，返回错误信息f
         else return Result.error("用户名或密码错误");
+    }
+    @PostMapping("/register")
+    public Result register(@RequestBody UserAccount account) {
+        log.info("用户注册：{}", account);
+        if (userAccountService.selectByUsername(account.getUsername()) != null)return Result.error("用户名已存在");
+        userAccountService.register(account);
+        return Result.success();
     }
 }

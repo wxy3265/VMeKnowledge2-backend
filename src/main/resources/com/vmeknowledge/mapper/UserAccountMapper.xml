@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vmeknowledge.mapper.UserAccountMapper">
+
+    <insert id="addInformation">
+        insert into user_information (user_id, nick_name, image, email, gender, personal_signature, phone)
+        values (#{userId}, #{nickName}, #{image}, #{email}, #{gender}, #{personalSignature}, #{phone})
+    </insert>
+</mapper>
