@@ -22,7 +22,7 @@ public class LoginController {
     /**
      * 用户登录
      * @param account
-     * @return
+     * @return Result
      */
     @PostMapping("/login")
     public Result login(@RequestBody UserAccount account) {
@@ -38,13 +38,15 @@ public class LoginController {
             return Result.success(jwt);
         }
 
-        //登录失败，返回错误信息f
+        //登录失败，返回错误信息
         else return Result.error("用户名或密码错误");
     }
     @PostMapping("/register")
     public Result register(@RequestBody UserAccount account) {
         log.info("用户注册：{}", account);
-        if (userAccountService.selectByUsername(account.getUsername()) != null)return Result.error("用户名已存在");
+        if (userAccountService.selectByUsername(account.getUsername()) != null){
+            return Result.error("用户名已存在");
+        }
         userAccountService.register(account);
         return Result.success();
     }

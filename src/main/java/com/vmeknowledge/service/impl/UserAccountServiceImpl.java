@@ -15,8 +15,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     private UserAccountMapper userAccountMapper;
     @Override
     public UserAccount login(UserAccount account) {
-        UserAccount newUserAccount=userAccountMapper.selectByUsername(account.getUsername());
-        if (BCryptPasswordUtil.verifyPassword(account.getPassword(),newUserAccount.getPassword()))return newUserAccount;
+        UserAccount newUserAccount = userAccountMapper.selectByUsername(account.getUsername());
+        if (BCryptPasswordUtil.verifyPassword(account.getPassword(),newUserAccount.getPassword())) {
+            return newUserAccount;
+        }
         else return null;
 
     }
@@ -31,10 +33,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public void register(UserAccount account) {
         //对密码进行加密
-        String password =BCryptPasswordUtil.encryptPassword(account.getPassword());
+        String password = BCryptPasswordUtil.encryptPassword(account.getPassword());
         account.setPassword(password);
         userAccountMapper.addAccount(account);
-        UserInformation userInfo= new UserInformation();
+        UserInformation userInfo = new UserInformation();
         userInfo.setUserId(account.getId());
         userAccountMapper.addInformation(userInfo);
     }
