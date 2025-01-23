@@ -1,4 +1,4 @@
-package com.vmeknowledge.Utils;
+package com.vmeknowledge.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class JwtUtils {
 
-    private static String signKey = "Vmeknowledge";
-    private static Long expire = 43200000L;
+    private static final String SIGN_KEY = "Vmeknowledge";
+    private static final long EXPIRATION_TIME = 12 * 60 * 60 * 1000;
 
     /**
      * 生成JWT令牌
@@ -20,8 +20,8 @@ public class JwtUtils {
     public static String generateJwt(Map<String, Object> claims){
         String jwt = Jwts.builder()
                 .addClaims(claims)
-                .signWith(SignatureAlgorithm.HS256, signKey)
-                .setExpiration(new Date(System.currentTimeMillis() + expire))
+                .signWith(SignatureAlgorithm.HS256, SIGN_KEY)
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .compact();
         return jwt;
     }
@@ -33,7 +33,7 @@ public class JwtUtils {
      */
     public static Claims parseJWT(String jwt){
         Claims claims = Jwts.parser()
-                .setSigningKey(signKey)
+                .setSigningKey(SIGN_KEY)
                 .parseClaimsJws(jwt)
                 .getBody();
         return claims;

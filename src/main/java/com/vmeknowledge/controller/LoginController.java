@@ -1,7 +1,7 @@
 package com.vmeknowledge.controller;
 
 
-import com.vmeknowledge.Utils.JwtUtils;
+import com.vmeknowledge.utils.JwtUtils;
 import com.vmeknowledge.common.Result;
 import com.vmeknowledge.pojo.UserAccount;
 import com.vmeknowledge.service.UserAccountService;
