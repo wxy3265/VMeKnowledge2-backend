@@ -40,4 +40,9 @@ public class UserAccountServiceImpl implements UserAccountService {
         userInfo.setUserId(account.getId());
         userAccountMapper.addInformation(userInfo);
     }
+
+    @Override
+    public void update(UserInformation info) {
+        userAccountMapper.update(info);
+    }
 }

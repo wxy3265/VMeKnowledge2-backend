@@ -8,4 +8,29 @@
         insert into user_information (user_id, nick_name, image, email, gender, personal_signature, phone)
         values (#{userId}, #{nickName}, #{image}, #{email}, #{gender}, #{personalSignature}, #{phone})
     </insert>
+
+    <update id="update">
+        update user_information
+        <set>
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
+            </if>
+            <if test="image != null and image != ''">
+                `image` = #{image},
+            </if>
+            <if test="email != null and email != ''">
+                `email` = #{email},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="personalSignature != null and personalSignature != ''">
+                personal_signature = #{personalSignature},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
 </mapper>

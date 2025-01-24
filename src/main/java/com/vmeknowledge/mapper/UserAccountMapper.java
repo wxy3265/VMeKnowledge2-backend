@@ -19,4 +19,6 @@ public interface UserAccountMapper {
 
 
     void addInformation(UserInformation userInfo);
+
+    void update(UserInformation info);
 }

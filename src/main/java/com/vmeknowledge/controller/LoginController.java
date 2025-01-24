@@ -1,6 +1,7 @@
 package com.vmeknowledge.controller;
 
 
+import com.vmeknowledge.pojo.UserInformation;
 import com.vmeknowledge.utils.JwtUtils;
 import com.vmeknowledge.common.Result;
 import com.vmeknowledge.pojo.UserAccount;
@@ -8,6 +9,7 @@ import com.vmeknowledge.service.UserAccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
@@ -50,4 +52,13 @@ public class LoginController {
         userAccountService.register(account);
         return Result.success();
     }
+
+    @PutMapping("/user")
+    public Result update(@RequestBody UserInformation info){
+        log.info("修改：{}", info);
+        userAccountService.update(info);
+        return Result.success();
+    }
+
+
 }
