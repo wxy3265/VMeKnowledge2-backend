@@ -1,6 +1,5 @@
 package com.vmeknowledge.controller;
 
-
 import com.vmeknowledge.pojo.UserInformation;
 import com.vmeknowledge.utils.JwtUtils;
 import com.vmeknowledge.common.Result;
@@ -59,6 +58,4 @@ public class LoginController {
         userAccountService.update(info);
         return Result.success();
     }
-
-
 }
