@@ -29,7 +29,6 @@ public class MysqlInitializer {
                 log.error("No init method in: " + mapper.getClass().getName());
             } catch (Exception e) {
                 log.error("Failed to execute init for: " + mapper.getClass().getName());
-                e.printStackTrace();
             }
         }
     }
