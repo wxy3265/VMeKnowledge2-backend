@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: VMeKnowledge2-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Vmeknowledge
+    username: root
+    password: 1234
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  web:
+    resources:
+      #需要指定服务器中的具体文件路径
+      static-locations: file:/path/to/your/uploads/
+server:
+  port: 8080
