@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserAccountMapper {
 
+    void init();
+
     @Select("select * from user_account where username = #{username}")
     UserAccount selectByUsername(String username);
 
@@ -17,8 +19,6 @@ public interface UserAccountMapper {
     @Insert("insert into user_account (username, password) values (#{username}, #{password})")
     void addAccount(UserAccount account);
 
-
-    void addInformation(UserInformation userInfo);
-
     void update(UserInformation info);
+
 }

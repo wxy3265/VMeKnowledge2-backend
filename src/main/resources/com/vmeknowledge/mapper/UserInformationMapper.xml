@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vmeknowledge.mapper.UserInformationMapper">
+
+    <update id="init">
+        CREATE TABLE IF NOT EXISTS user_information (
+                                                        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+                                                        user_id INT UNSIGNED NOT NULL COMMENT '用户id',
+                                                        nick_name VARCHAR(10) COMMENT '昵称',
+                                                        image VARCHAR(255) COMMENT '头像',
+                                                        email VARCHAR(50) COMMENT '邮箱',
+                                                        gender TINYINT UNSIGNED COMMENT '性别 0:女，1:男',
+                                                        personal_signature VARCHAR(255) COMMENT '个性签名',
+                                                        phone VARCHAR(20) COMMENT '手机号'
+        ) COMMENT '用户信息';
+    </update>
+
+
+    <insert id="addInformation">
+        insert into user_information (user_id, nick_name, image, email, gender, personal_signature, phone)
+        values (#{userId}, #{nickName}, #{image}, #{email}, #{gender}, #{personalSignature}, #{phone})
+    </insert>
+
+</mapper>
