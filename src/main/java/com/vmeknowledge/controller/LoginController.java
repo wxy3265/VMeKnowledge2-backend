@@ -43,6 +43,12 @@ public class LoginController {
         //登录失败，返回错误信息
         else return Result.error("用户名或密码错误");
     }
+
+    /**
+     * 用户注册
+     * @param account
+     * @return Result
+     */
     @PostMapping("/register")
     public Result register(@RequestBody UserAccount account) {
         log.info("用户注册：{}", account);
@@ -53,6 +59,11 @@ public class LoginController {
         return Result.success();
     }
 
+    /**
+     * 完善基本信息
+     * @param info
+     * @return Result
+     */
     @PutMapping("/user")
     public Result update(@RequestBody UserInformation info){
         log.info("修改：{}", info);
