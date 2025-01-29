@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VMeKnowledge2BackendApplication {
 
     public static void main(String[] args) {
-        new Initializer().init();
         SpringApplication.run(VMeKnowledge2BackendApplication.class, args);
+        new Initializer().init();
     }
 
 }
