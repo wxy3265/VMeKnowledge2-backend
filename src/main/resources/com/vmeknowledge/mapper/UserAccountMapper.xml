@@ -24,7 +24,7 @@
             <if test="gender != null">
                 gender = #{gender},
             </if>
-            <if test="personalSignature != null and personalSignature != ''">
+            <if test="personalSignature != null">
                 personal_signature = #{personalSignature},
             </if>
             <if test="phone != null and phone != ''">

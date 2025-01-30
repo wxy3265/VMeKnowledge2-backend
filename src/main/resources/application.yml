@@ -12,7 +12,10 @@ spring:
       max-request-size: 100MB
   web:
     resources:
-      #需要指定服务器中的具体文件路径
+      # 需要指定服务器中的具体文件路径
       static-locations: file:/path/to/your/uploads/
+  data:
+    mongodb:
+      uri: mongodb://username:password@localhost:27017/knowledge
 server:
   port: 8080
