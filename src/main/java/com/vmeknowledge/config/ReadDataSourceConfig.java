@@ -21,7 +21,7 @@ public class ReadDataSourceConfig {
         if (dryRun == null) {
             dryRun = "0";
         }
-        String url = "";
+        String url;
         if (!dryRun.equals("0")) {
             url = "jdbc:mysql://127.0.0.1:300" + dryRun + "/vmeknowledge";
         } else {
