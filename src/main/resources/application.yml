@@ -16,6 +16,8 @@ spring:
       static-locations: file:/path/to/your/uploads/
   data:
     mongodb:
-      uri: mongodb://username:password@localhost:27017/knowledge
+      host: 127.0.0.1
+      port: 27017
+      database: Vmeknowledge
 server:
   port: 8080
