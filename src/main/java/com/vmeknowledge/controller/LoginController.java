@@ -28,7 +28,6 @@ public class LoginController {
      */
     @PostMapping("/login")
     public Result login(@RequestBody UserAccount account) {
-        log.info("用户登录：{}", account);
         UserAccount e = userAccountService.login(account);
 
         //登陆成功，生成令牌，下发令牌
@@ -51,7 +50,6 @@ public class LoginController {
      */
     @PostMapping("/register")
     public Result register(@RequestBody UserAccount account) {
-        log.info("用户注册：{}", account);
         if (userAccountService.selectByUsername(account.getUsername()) != null){
             return Result.error("用户名已存在");
         }
