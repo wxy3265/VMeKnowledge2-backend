@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -28,7 +29,11 @@ public class MysqlInitializer {
             } catch (NoSuchMethodException e) {
                 log.error("No init method in: {}", mapper.getClass().getName());
             } catch (Exception e) {
-                log.error("Failed to execute init for: {}; Reason: {}", mapper.getClass().getName(), e.toString());
+                log.error("Failed to execute init for: {}; Reason: ", mapper.getClass().getName());
+                if (e instanceof InvocationTargetException) {
+                    Throwable cause = ((InvocationTargetException) e).getTargetException();
+                    log.error(cause.getMessage());
+                }
             }
         }
     }
