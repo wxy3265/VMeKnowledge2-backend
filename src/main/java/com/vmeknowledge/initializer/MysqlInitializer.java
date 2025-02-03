@@ -32,7 +32,7 @@ public class MysqlInitializer {
                 log.error("Failed to execute init for: {}", mapper.getClass().getName());
                 if (e instanceof InvocationTargetException) {
                     Throwable cause = ((InvocationTargetException) e).getTargetException();
-                    log.error("Reason: {}", cause.toString());
+                    log.error("Reason: {}; stack trace: {}", cause.toString(), cause.getStackTrace());
                 }
             }
         }
