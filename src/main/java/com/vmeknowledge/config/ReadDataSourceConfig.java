@@ -24,7 +24,8 @@ public class ReadDataSourceConfig {
         }
         String url;
         if (!dryRun.equals("0")) {
-            url = "jdbc:mysql://mysql-test" + dryRun + ":300" + dryRun + "/vmeknowledge";
+//            url = "jdbc:mysql://mysql-test" + dryRun + ":300" + dryRun + "/vmeknowledge";
+            url = "jdbc:mysql://mysql-test" + dryRun + ":3306/vmeknowledge";
         } else {
             url = "jdbc:mysql://mysql-online:3000/vmeknowledge";
         }
