@@ -13,4 +13,4 @@ server:
   port: 8080
 mybatis:
   configuration:
-    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
