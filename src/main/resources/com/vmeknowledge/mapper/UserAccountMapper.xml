@@ -4,10 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vmeknowledge.mapper.UserAccountMapper">
 
-    <insert id="addInformation">
-        insert into user_information (user_id, nick_name, image, email, gender, personal_signature, phone)
-        values (#{userId}, #{nickName}, #{image}, #{email}, #{gender}, #{personalSignature}, #{phone})
-    </insert>
+    <update id="init">
+        CREATE TABLE IF NOT EXISTS user_account (
+                                                    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+                                                    username VARCHAR(25) NOT NULL UNIQUE COMMENT '用户名',
+                                                    password VARCHAR(100) NOT NULL COMMENT '密码'
+        ) COMMENT '账号';
+    </update>
 
     <update id="update">
         update user_information
@@ -33,4 +36,5 @@
         </set>
         where user_id = #{userId}
     </update>
+
 </mapper>

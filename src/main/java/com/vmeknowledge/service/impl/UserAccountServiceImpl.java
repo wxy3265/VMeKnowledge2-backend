@@ -1,6 +1,7 @@
 package com.vmeknowledge.service.impl;
 
 import com.vmeknowledge.mapper.UserAccountMapper;
+import com.vmeknowledge.mapper.UserInformationMapper;
 import com.vmeknowledge.pojo.UserAccount;
 import com.vmeknowledge.pojo.UserInformation;
 import com.vmeknowledge.service.UserAccountService;
@@ -13,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserAccountServiceImpl implements UserAccountService {
     @Autowired
     private UserAccountMapper userAccountMapper;
+    @Autowired
+    private UserInformationMapper userInformationMapper;
     @Override
     public UserAccount login(UserAccount account) {
         UserAccount newUserAccount = userAccountMapper.selectByUsername(account.getUsername());
@@ -38,7 +41,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         userAccountMapper.addAccount(account);
         UserInformation userInfo = new UserInformation();
         userInfo.setUserId(account.getId());
-        userAccountMapper.addInformation(userInfo);
+        userInformationMapper.addInformation(userInfo);
     }
 
     @Override
