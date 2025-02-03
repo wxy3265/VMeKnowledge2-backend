@@ -12,10 +12,13 @@ public class ReadDataSourceConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("root");
         dataSource.setPassword("31321");
         String dryRun = System.getenv("DRY_RUN");
+        if (dryRun == null) {
+            dryRun = "0";
+        }
         if (!dryRun.equals("0")) {
             dataSource.setUrl("jdbc:mysql://127.0.0.1:300" + dryRun + "/vmeknowledge");
         } else {

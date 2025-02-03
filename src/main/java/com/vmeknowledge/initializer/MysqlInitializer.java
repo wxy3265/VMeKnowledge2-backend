@@ -20,15 +20,15 @@ public class MysqlInitializer {
 
         for (Map.Entry<String, Object> entry : mappers.entrySet()) {
             Object mapper = entry.getValue();
-            log.info("Mapper key:" + entry.getKey());
+            log.info("Mapper key:{}", entry.getKey());
             try {
                 Method initMethod = mapper.getClass().getDeclaredMethod("init");
                 initMethod.invoke(mapper);
-                log.info("Executed init for: " + mapper.getClass().getName());
+                log.info("Executed init for: {}", mapper.getClass().getName());
             } catch (NoSuchMethodException e) {
-                log.error("No init method in: " + mapper.getClass().getName());
+                log.error("No init method in: {}", mapper.getClass().getName());
             } catch (Exception e) {
-                log.error("Failed to execute init for: " + mapper.getClass().getName());
+                log.error("Failed to execute init for: {}", mapper.getClass().getName());
             }
         }
     }
