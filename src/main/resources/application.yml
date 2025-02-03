@@ -11,3 +11,6 @@ spring:
       static-locations: file:/path/to/your/uploads/
 server:
   port: 8080
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
