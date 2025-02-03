@@ -28,7 +28,7 @@ public class MysqlInitializer {
             } catch (NoSuchMethodException e) {
                 log.error("No init method in: {}", mapper.getClass().getName());
             } catch (Exception e) {
-                log.error("Failed to execute init for: {}; Reason: {}", mapper.getClass().getName(), e.getMessage());
+                log.error("Failed to execute init for: {}; Reason: {}", mapper.getClass().getName(), e.toString());
             }
         }
     }

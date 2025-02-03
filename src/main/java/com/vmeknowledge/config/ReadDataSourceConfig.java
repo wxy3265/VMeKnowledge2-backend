@@ -19,6 +19,7 @@ public class ReadDataSourceConfig {
         dataSource.setPassword("31321");
         String dryRun = System.getenv("DRY_RUN");
         if (dryRun == null) {
+            log.error("DRY_RUN environment variable not set");
             dryRun = "0";
         }
         String url;
