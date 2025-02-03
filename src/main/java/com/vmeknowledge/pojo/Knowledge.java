@@ -3,9 +3,10 @@ package com.vmeknowledge.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDateTime;
 
 @Data
@@ -17,6 +18,11 @@ public class Knowledge {
     private int id;
     private String title;
     private String describe;
-    private LocalDateTime createTime;
     private String content;
+
+    @CreatedDate // 自动设置为创建时间
+    private LocalDateTime createTime;
+
+    @LastModifiedDate // 自动设置为更新时间
+    private LocalDateTime updateTime;
 }
