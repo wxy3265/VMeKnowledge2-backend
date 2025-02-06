@@ -161,6 +161,13 @@
             <version>0.4</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version> <!-- 建议使用最新稳定版 -->
+        </dependency>
+
     </dependencies>
 
     <build>
