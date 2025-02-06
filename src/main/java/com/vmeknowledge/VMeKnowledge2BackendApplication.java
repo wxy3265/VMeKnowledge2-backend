@@ -14,6 +14,8 @@ public class VMeKnowledge2BackendApplication {
         ApplicationContext context = SpringApplication.run(VMeKnowledge2BackendApplication.class, args);
         Initializer initializer = context.getBean(Initializer.class);
         initializer.init();
+        log.info("zzs.test");
+
     }
 
 }
