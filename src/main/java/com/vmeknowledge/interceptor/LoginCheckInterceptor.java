@@ -57,6 +57,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         return true;
     }
 
+
     @Override//放行之后运行
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         System.out.println("postHandle...");

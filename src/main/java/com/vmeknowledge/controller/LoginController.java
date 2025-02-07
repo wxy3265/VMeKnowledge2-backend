@@ -36,6 +36,7 @@ public class LoginController {
             claims.put("username",e.getUsername());
             String jwt = JwtUtils.generateJwt(claims);
             return Result.success(jwt);
+
         }
 
         //登录失败，返回错误信息
