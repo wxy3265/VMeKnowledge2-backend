@@ -29,21 +29,21 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public List<Knowledge> getAllKnowledge(){
         return knowledgeMapper.findAll();
     }
-    public Knowledge getKnowledgeById(int id){
+    public Knowledge getKnowledgeById(Object id){
         return knowledgeMapper.findById(id).orElse(null);
     }
-    public void deleteKnowledgeById(int id){
+    public void deleteKnowledgeById(Object id){
         knowledgeMapper.deleteById(id);
     }
 
-    public Knowledge updateKnowledge(int id, Knowledge updatedKnowledge) {
+    public Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge) { // 修改为 String 类型
         // 创建查询条件
-        Criteria criteria = Criteria.where("id").is(id);
+        Criteria criteria = Criteria.where("_id").is(id); // 修改为 "_id"
 
         // 创建更新对象
         Update update = new Update();
         update.set("title", updatedKnowledge.getTitle());
-        update.set("description", updatedKnowledge.getDescribe());
+        update.set("description", updatedKnowledge.getDescription());
         update.set("content", updatedKnowledge.getContent());
         update.set("updateTime", LocalDateTime.now());
 
