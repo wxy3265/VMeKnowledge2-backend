@@ -8,7 +8,7 @@ spring:
   web:
     resources:
       #需要指定服务器中的具体文件路径
-      static-locations: file:/path/to/your/uploads/
+      static-locations: file:/db/test1/mysql
 server:
   port: 8081
 mybatis:
