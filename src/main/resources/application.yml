@@ -7,13 +7,8 @@ spring:
       max-request-size: 100MB
   web:
     resources:
-      # 需要指定服务器中的具体文件路径
-      static-locations: file:/path/to/your/uploads/
-  data:
-    mongodb:
-      host: 127.0.0.1
-      port: 27017
-      database: Vmeknowledge
+      #需要指定服务器中的具体文件路径
+      static-locations: file:/db/test1/mysql
 server:
   port: 8080
 mybatis:
