@@ -12,6 +12,7 @@ public class ces {
 
     @GetMapping("/tt")
     public Result tt(){
-        return Result.success(UserThreadLocal.getCurrentId());
+        String s = "登錄的用戶id為："+UserThreadLocal.getCurrentId();
+        return Result.success(s);
     }
 }
