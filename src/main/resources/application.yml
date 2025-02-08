@@ -7,8 +7,7 @@ spring:
       max-request-size: 100MB
   web:
     resources:
-      # 需要指定服务器中的具体文件路径
-      static-locations: file:/path/to/your/uploads/
+      static-locations: classpath:/resources/files
   data:
     mongodb:
       host: 127.0.0.1
