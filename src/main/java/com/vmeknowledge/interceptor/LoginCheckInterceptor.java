@@ -1,7 +1,9 @@
 package com.vmeknowledge.interceptor;
 
 import com.vmeknowledge.common.Result;
+import com.vmeknowledge.threadLocal.UserThreadLocal;
 import com.vmeknowledge.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +40,11 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         }
 
         try {
-            JwtUtils.parseJWT(jwt);
+            Claims claims = JwtUtils.parseJWT(jwt);
+            Integer id = Integer.valueOf(claims.get("id").toString());
+            UserThreadLocal.setCurrentId(id);
+            log.info("当前用户id为：{}",UserThreadLocal.getCurrentId());
+            log.info("解析令牌成功");
         }catch (Exception e){
             e.printStackTrace();
             log.info("解析令牌失败");
@@ -51,6 +57,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         log.info("放行");
         return true;
     }
+
 
     @Override//放行之后运行
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
