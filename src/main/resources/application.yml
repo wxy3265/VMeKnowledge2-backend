@@ -10,7 +10,7 @@ spring:
       #需要指定服务器中的具体文件路径
       static-locations: file:/db/test1/mysql
 server:
-  port: 8080
+  port: 8081
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
