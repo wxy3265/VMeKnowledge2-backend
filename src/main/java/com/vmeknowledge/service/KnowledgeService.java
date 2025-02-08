@@ -7,7 +7,7 @@ import java.util.List;
 public interface KnowledgeService {
     Knowledge saveKnowledge(Knowledge knowledge);
 
-    List<Knowledge> getAllKnowledge();
+    List<Knowledge> getUserAllKnowledge();
 
     Knowledge getKnowledgeById(Object id);
 
