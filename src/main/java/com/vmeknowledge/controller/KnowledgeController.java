@@ -25,8 +25,8 @@ public class KnowledgeController {
 
     @GetMapping
     public Result getAllKnowledge(){
-        log.info("查询所有知识");
-        List<Knowledge> knowledgeList = knowledgeService.getAllKnowledge();
+        log.info("查询当前用户所有知识");
+        List<Knowledge> knowledgeList = knowledgeService.getUserAllKnowledge();
         return Result.success(knowledgeList);
     }
 
