@@ -1,5 +1,10 @@
 package com.vmeknowledge.config;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
@@ -14,4 +19,15 @@ public class MongoConfig implements AuditorAware<String> {
         // 返回当前用户的标识（例如用户名），如果没有用户则返回 null
         return Optional.of("system");
     }
+
+    @Bean
+    public MongoClient mongoClient() {
+        String url = "mongodb://root:secret@mongodb:27017/mydb?authSource=admin";
+        ConnectionString cs = new ConnectionString(url);
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(cs)
+                .build();
+        return MongoClients.create(settings);
+    }
+
 }
