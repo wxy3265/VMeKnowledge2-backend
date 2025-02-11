@@ -1,19 +1,17 @@
 package com.vmeknowledge.service;
 
 import com.vmeknowledge.pojo.Knowledge;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface KnowledgeService {
     Knowledge saveKnowledge(Knowledge knowledge);
 
-    List<Knowledge> getAllKnowledge();
+    List<Knowledge> getUserAllKnowledge();
 
-    Knowledge getKnowledgeById(int id);
+    Knowledge getKnowledgeById(Object id);
 
-    void deleteKnowledgeById(int id);
+    void deleteKnowledgeById(Object id);
 
-    Knowledge updateKnowledge(int id, Knowledge updatedKnowledge);
+    Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge);
 }

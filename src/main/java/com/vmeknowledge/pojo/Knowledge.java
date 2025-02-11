@@ -15,9 +15,10 @@ import java.time.LocalDateTime;
 @Document(collection = "knowledge")
 public class Knowledge {
     @Id
-    private int id;
+    private Object id; // 添加 _id 字段
+    private int userId;
     private String title;
-    private String describe;
+    private String description;
     private String content;
 
     @CreatedDate // 自动设置为创建时间

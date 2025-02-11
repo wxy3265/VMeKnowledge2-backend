@@ -25,27 +25,27 @@ public class KnowledgeController {
 
     @GetMapping
     public Result getAllKnowledge(){
-        log.info("查询所有知识");
-        List<Knowledge> knowledgeList = knowledgeService.getAllKnowledge();
+        log.info("查询当前用户所有知识");
+        List<Knowledge> knowledgeList = knowledgeService.getUserAllKnowledge();
         return Result.success(knowledgeList);
     }
 
     @GetMapping("/{id}")
-    public Result getKnowledgeById(@PathVariable Integer id){
+    public Result getKnowledgeById(@PathVariable Object id){
         log.info("根据id获取知识");
         Knowledge knowledge = knowledgeService.getKnowledgeById(id);
         return Result.success(knowledge);
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteKnowledgeById(@PathVariable Integer id){
+    public Result deleteKnowledgeById(@PathVariable Object id){
         log.info("根据id删除知识");
         knowledgeService.deleteKnowledgeById(id);
         return Result.success();
     }
 
     @PutMapping("/{id}")
-    public Result updateKnowledge(@PathVariable int id, @RequestBody Knowledge updatedKnowledge) {
+    public Result updateKnowledge(@PathVariable Object id, @RequestBody Knowledge updatedKnowledge) {
         log.info("更新知识：{}", updatedKnowledge);
         Knowledge updatedKnowledgeResult = knowledgeService.updateKnowledge(id, updatedKnowledge);
         return Result.success(updatedKnowledgeResult);

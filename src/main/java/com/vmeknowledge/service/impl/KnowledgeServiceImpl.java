@@ -3,6 +3,7 @@ package com.vmeknowledge.service.impl;
 import com.vmeknowledge.mapper.KnowledgeMapper;
 import com.vmeknowledge.pojo.Knowledge;
 import com.vmeknowledge.service.KnowledgeService;
+import com.vmeknowledge.threadLocal.UserThreadLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -24,28 +25,30 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public Knowledge saveKnowledge(Knowledge knowledge){
         knowledge.setCreateTime(LocalDateTime.now());
         knowledge.setUpdateTime(LocalDateTime.now());
+        knowledge.setUserId(UserThreadLocal.getCurrentId());
         return knowledgeMapper.save(knowledge);
     }
-    public List<Knowledge> getAllKnowledge(){
-        return knowledgeMapper.findAll();
+    public List<Knowledge> getUserAllKnowledge(){
+        return knowledgeMapper.findAllByUserId(UserThreadLocal.getCurrentId());
     }
-    public Knowledge getKnowledgeById(int id){
+    public Knowledge getKnowledgeById(Object id){
         return knowledgeMapper.findById(id).orElse(null);
     }
-    public void deleteKnowledgeById(int id){
+    public void deleteKnowledgeById(Object id){
         knowledgeMapper.deleteById(id);
     }
 
-    public Knowledge updateKnowledge(int id, Knowledge updatedKnowledge) {
+    public Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge) {
         // 创建查询条件
-        Criteria criteria = Criteria.where("id").is(id);
+        Criteria criteria = Criteria.where("_id").is(id); // 修改为 "_id"
 
         // 创建更新对象
         Update update = new Update();
         update.set("title", updatedKnowledge.getTitle());
-        update.set("description", updatedKnowledge.getDescribe());
+        update.set("description", updatedKnowledge.getDescription());
         update.set("content", updatedKnowledge.getContent());
         update.set("updateTime", LocalDateTime.now());
+        update.set("userId",UserThreadLocal.getCurrentId());
 
         // 执行更新操作
         Knowledge updatedKnowledgeResult = mongoTemplate.findAndModify(

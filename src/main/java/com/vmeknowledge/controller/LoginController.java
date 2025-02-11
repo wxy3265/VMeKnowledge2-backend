@@ -27,7 +27,6 @@ public class LoginController {
      */
     @PostMapping("/login")
     public Result login(@RequestBody UserAccount account) {
-        log.info("用户登录：{}", account);
         UserAccount e = userAccountService.login(account);
 
         //登陆成功，生成令牌，下发令牌
@@ -37,14 +36,20 @@ public class LoginController {
             claims.put("username",e.getUsername());
             String jwt = JwtUtils.generateJwt(claims);
             return Result.success(jwt);
+
         }
 
         //登录失败，返回错误信息
         else return Result.error("用户名或密码错误");
     }
+
+    /**
+     * 用户注册
+     * @param account
+     * @return Result
+     */
     @PostMapping("/register")
     public Result register(@RequestBody UserAccount account) {
-        log.info("用户注册：{}", account);
         if (userAccountService.selectByUsername(account.getUsername()) != null){
             return Result.error("用户名已存在");
         }
@@ -52,6 +57,11 @@ public class LoginController {
         return Result.success();
     }
 
+    /**
+     * 完善基本信息
+     * @param info
+     * @return Result
+     */
     @PutMapping("/user")
     public Result update(@RequestBody UserInformation info){
         log.info("修改：{}", info);
