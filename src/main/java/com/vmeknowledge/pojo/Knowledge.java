@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Document(collection = "knowledge")
 public class Knowledge {
     @Id
-    private Object id; // 添加 _id 字段
+    private String id; // 添加 _id 字段
     private int userId;
     private String title;
     private String description;

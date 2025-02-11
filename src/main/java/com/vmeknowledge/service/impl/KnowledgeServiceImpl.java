@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,14 +30,14 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public List<Knowledge> getUserAllKnowledge(){
         return knowledgeMapper.findAllByUserId(UserThreadLocal.getCurrentId());
     }
-    public Knowledge getKnowledgeById(Object id){
+    public Knowledge getKnowledgeById(String id){
         return knowledgeMapper.findById(id).orElse(null);
     }
-    public void deleteKnowledgeById(Object id){
+    public void deleteKnowledgeById(String id){
         knowledgeMapper.deleteById(id);
     }
 
-    public Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge) {
+    public Knowledge updateKnowledge(String id, Knowledge updatedKnowledge) {
         // 创建查询条件
         Criteria criteria = Criteria.where("_id").is(id); // 修改为 "_id"
 
