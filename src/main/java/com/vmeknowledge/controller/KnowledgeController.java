@@ -52,7 +52,7 @@ public class KnowledgeController {
     }
 
     @PutMapping("/visibility/{id}")
-    public Result updateVisibility(@PathVariable Object id,@RequestBody int visibility) {
+    public Result updateVisibility(@PathVariable String id,@RequestBody int visibility) {
         log.info("更新可见性：{}", visibility);
         Knowledge updateVisibility = knowledgeService.updateVisibility(id, visibility);
         return Result.success(updateVisibility);

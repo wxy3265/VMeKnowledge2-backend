@@ -68,7 +68,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     }
 
     @Override
-    public Knowledge updateVisibility(Object id, int visibility) {
+    public Knowledge updateVisibility(String id, int visibility) {
         Criteria criteria = Criteria.where("_id").is(id);
 
         Update update = new Update();

@@ -9,11 +9,11 @@ public interface KnowledgeService {
 
     List<Knowledge> getUserAllKnowledge();
 
-    Knowledge getKnowledgeById(Object id);
+    Knowledge getKnowledgeById(String id);
 
-    void deleteKnowledgeById(Object id);
+    void deleteKnowledgeById(String id);
 
-    Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge);
+    Knowledge updateKnowledge(String id, Knowledge updatedKnowledge);
 
-    Knowledge updateVisibility(Object id, int visibility);
+    Knowledge updateVisibility(String id, int visibility);
 }
