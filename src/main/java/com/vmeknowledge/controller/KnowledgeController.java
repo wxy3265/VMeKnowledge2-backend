@@ -31,21 +31,21 @@ public class KnowledgeController {
     }
 
     @GetMapping("/{id}")
-    public Result getKnowledgeById(@PathVariable Object id){
+    public Result getKnowledgeById(@PathVariable String id){
         log.info("根据id获取知识");
         Knowledge knowledge = knowledgeService.getKnowledgeById(id);
         return Result.success(knowledge);
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteKnowledgeById(@PathVariable Object id){
+    public Result deleteKnowledgeById(@PathVariable String id){
         log.info("根据id删除知识");
         knowledgeService.deleteKnowledgeById(id);
         return Result.success();
     }
 
     @PutMapping("/{id}")
-    public Result updateKnowledge(@PathVariable Object id, @RequestBody Knowledge updatedKnowledge) {
+    public Result updateKnowledge(@PathVariable String id, @RequestBody Knowledge updatedKnowledge) {
         log.info("更新知识：{}", updatedKnowledge);
         Knowledge updatedKnowledgeResult = knowledgeService.updateKnowledge(id, updatedKnowledge);
         return Result.success(updatedKnowledgeResult);
