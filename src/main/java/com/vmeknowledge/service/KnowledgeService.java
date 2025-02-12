@@ -14,4 +14,6 @@ public interface KnowledgeService {
     void deleteKnowledgeById(Object id);
 
     Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge);
+
+    Knowledge updateVisibility(Object id, int visibility);
 }

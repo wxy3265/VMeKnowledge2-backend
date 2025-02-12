@@ -50,4 +50,12 @@ public class KnowledgeController {
         Knowledge updatedKnowledgeResult = knowledgeService.updateKnowledge(id, updatedKnowledge);
         return Result.success(updatedKnowledgeResult);
     }
+
+    @PutMapping("/visibility/{id}")
+    public Result updateVisibility(@PathVariable Object id,@RequestBody int visibility) {
+        log.info("更新可见性：{}", visibility);
+        Knowledge updateVisibility = knowledgeService.updateVisibility(id, visibility);
+        return Result.success(updateVisibility);
+    }
+
 }
