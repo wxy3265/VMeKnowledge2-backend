@@ -15,11 +15,14 @@ import java.time.LocalDateTime;
 @Document(collection = "knowledge")
 public class Knowledge {
     @Id
-    private Object id; // 添加 _id 字段
+    private String id; // 添加 _id 字段
     private int userId;
     private String title;
     private String description;
     private String content;
+    private int visibility; //可见性:1-公开 2-私有 3-仅关注者可见
+    private String tags; // 标签
+
 
     @CreatedDate // 自动设置为创建时间
     private LocalDateTime createTime;

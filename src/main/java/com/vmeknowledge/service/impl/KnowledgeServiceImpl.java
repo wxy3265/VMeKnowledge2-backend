@@ -1,5 +1,6 @@
 package com.vmeknowledge.service.impl;
 
+import com.vmeknowledge.constant.VisibilityConstant;
 import com.vmeknowledge.mapper.KnowledgeMapper;
 import com.vmeknowledge.pojo.Knowledge;
 import com.vmeknowledge.service.KnowledgeService;
@@ -26,19 +27,20 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         knowledge.setCreateTime(LocalDateTime.now());
         knowledge.setUpdateTime(LocalDateTime.now());
         knowledge.setUserId(UserThreadLocal.getCurrentId());
+        knowledge.setVisibility(VisibilityConstant.PRIVATE);
         return knowledgeMapper.save(knowledge);
     }
     public List<Knowledge> getUserAllKnowledge(){
         return knowledgeMapper.findAllByUserId(UserThreadLocal.getCurrentId());
     }
-    public Knowledge getKnowledgeById(Object id){
+    public Knowledge getKnowledgeById(String id){
         return knowledgeMapper.findById(id).orElse(null);
     }
-    public void deleteKnowledgeById(Object id){
+    public void deleteKnowledgeById(String id){
         knowledgeMapper.deleteById(id);
     }
 
-    public Knowledge updateKnowledge(Object id, Knowledge updatedKnowledge) {
+    public Knowledge updateKnowledge(String id, Knowledge updatedKnowledge) {
         // 创建查询条件
         Criteria criteria = Criteria.where("_id").is(id); // 修改为 "_id"
 
@@ -49,8 +51,30 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         update.set("content", updatedKnowledge.getContent());
         update.set("updateTime", LocalDateTime.now());
         update.set("userId",UserThreadLocal.getCurrentId());
+        update.set("visibility", updatedKnowledge.getVisibility());
 
         // 执行更新操作
+        Knowledge updatedKnowledgeResult = mongoTemplate.findAndModify(
+                new Query(criteria),
+                update,
+                FindAndModifyOptions.options().returnNew(true),
+                Knowledge.class
+        );
+
+        if (updatedKnowledgeResult == null) {
+            throw new IllegalArgumentException("Knowledge not found with ID: " + id);
+        }
+
+        return updatedKnowledgeResult;
+    }
+
+    @Override
+    public Knowledge updateVisibility(String id, int visibility) {
+        Criteria criteria = Criteria.where("_id").is(id);
+
+        Update update = new Update();
+        update.set("visibility", visibility);
+
         Knowledge updatedKnowledgeResult = mongoTemplate.findAndModify(
                 new Query(criteria),
                 update,
