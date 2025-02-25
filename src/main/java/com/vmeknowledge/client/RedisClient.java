@@ -29,7 +29,7 @@ public class RedisClient {
      * @param key Redis key
      * @param hashMap Map数据
      */
-    public void SetHashMap(String key, Map<?, ?> hashMap) {
+    public void SetHashMap(String key, Map<?,?> hashMap) {
         redisTemplate.opsForHash().putAll(key, hashMap);
     }
 

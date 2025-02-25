@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +22,7 @@ public class Knowledge {
     private String description;
     private String content;
     private int visibility; //可见性:1-公开 2-私有 3-仅关注者可见
-    private String tags; // 标签
+    private List<String> tags; // 标签
 
 
     @CreatedDate // 自动设置为创建时间
