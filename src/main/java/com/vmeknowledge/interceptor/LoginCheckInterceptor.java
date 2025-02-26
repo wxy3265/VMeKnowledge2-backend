@@ -66,6 +66,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
     @Override//最后运行
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("afterCompletion...");;
+        System.out.println("afterCompletion...");
+        UserThreadLocal.removeCurrentId();
     }
 }

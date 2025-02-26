@@ -18,7 +18,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(rateLimitInterceptor).addPathPatterns("/**");
-        registry.addInterceptor(loginCheckinterceptor).addPathPatterns("/**");
+        registry.addInterceptor(rateLimitInterceptor)
+                .addPathPatterns("/**"); // 配置需要限流的接口路径
+        registry.addInterceptor(loginCheckinterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/error");
     }
 }
