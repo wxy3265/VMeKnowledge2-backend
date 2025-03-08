@@ -2,6 +2,7 @@ package com.vmeknowledge.mapper;
 
 import com.vmeknowledge.pojo.UserAccount;
 import com.vmeknowledge.pojo.UserInformation;
+import com.vmeknowledge.rediscache.RedisCache;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -12,6 +13,7 @@ public interface UserAccountMapper {
 
     void init();
 
+    @RedisCache
     @Select("select * from user_account where username = #{username}")
     UserAccount selectByUsername(String username);
 
