@@ -11,11 +11,11 @@ spring:
       static-locations: file:/path/to/your/uploads/
   data:
     mongodb:
-      host: 182.92.121.103
+      host: mongo_db
       port: 3100
       database: Vmeknowledge
     redis:
-      host: localhost
+      host: redis_db
       port: 6379
       password: 123456 # 如果没有密码则删除此行
       database: 0
