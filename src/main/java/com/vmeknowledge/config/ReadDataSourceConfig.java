@@ -22,7 +22,7 @@ public class ReadDataSourceConfig {
             log.error("DRY_RUN environment variable not set");
             dryRun = "0";
         }
-        String url = "jdbc:mysql://mysql-online:3306/vmeknowledge";
+        String url = "jdbc:mysql://mysql_db:3306/vmeknowledge";
         if (!dryRun.equals("0")) {
             url += "_test_" + dryRun;
         }
