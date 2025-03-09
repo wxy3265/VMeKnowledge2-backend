@@ -10,10 +10,6 @@ spring:
       # 需要指定服务器中的具体文件路径
       static-locations: file:/path/to/your/uploads/
   data:
-    mongodb:
-      host: mongo_db
-      port: 3100
-      database: Vmeknowledge
     redis:
       host: redis_db
       port: 6379
