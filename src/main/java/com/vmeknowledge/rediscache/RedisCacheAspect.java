@@ -10,6 +10,12 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Slf4j
 @Aspect
 @Component
@@ -40,6 +46,14 @@ public class RedisCacheAspect {
         Object res = redisStringService.get(cacheRedisKey);
         if (res != null) {
             log.info("Get data from redis cache by key:{} data:{}", cacheRedisKey, res);
+            Map map = (Map) res;
+            res = createInstance(signature.getReturnType());
+            for (Object key : map.keySet()) {
+                Object value = map.get(key);
+                Field field = signature.getReturnType().getDeclaredField(key.toString());
+                field.setAccessible(true);
+                field.set(res, value);
+            }
         } else {
             // get from cache fail, get from origin
             try {
@@ -54,6 +68,13 @@ public class RedisCacheAspect {
         long expire = redisCache.expire();
         redisStringService.set(cacheRedisKey, res, expire);
         return res;
+    }
+
+    public static Object createInstance(Class<?> clazz) throws Exception {
+        // 获取无参构造函数
+        Constructor<?> constructor = clazz.getDeclaredConstructor();
+        // 创建实例
+        return constructor.newInstance();
     }
 
 }
