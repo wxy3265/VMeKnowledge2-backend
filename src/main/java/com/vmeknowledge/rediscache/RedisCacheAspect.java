@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.VariableOperators;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Constructor;
@@ -46,6 +47,9 @@ public class RedisCacheAspect {
         Object res = redisStringService.get(cacheRedisKey);
         if (res != null) {
             log.info("Get data from redis cache by key:{} data:{}", cacheRedisKey, res);
+            if (!(res instanceof Map)) {
+                throw new RuntimeException("Get data from redis cache failed: not linked has map!");
+            }
             Map map = (Map) res;
             res = createInstance(signature.getReturnType());
             for (Object key : map.keySet()) {
