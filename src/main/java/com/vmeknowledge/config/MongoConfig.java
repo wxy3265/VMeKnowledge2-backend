@@ -22,7 +22,7 @@ public class MongoConfig implements AuditorAware<String> {
 
     @Bean
     public MongoClient mongoClient() {
-        String url = "mongodb://root:secret@mongodb:27017/mydb?authSource=admin";
+        String url = "mongodb://root:secret@mongo_db:27017/mydb?authSource=admin";
         ConnectionString cs = new ConnectionString(url);
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(cs)

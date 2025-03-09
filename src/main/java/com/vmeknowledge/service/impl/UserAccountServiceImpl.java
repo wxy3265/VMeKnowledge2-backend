@@ -19,6 +19,9 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount login(UserAccount account) {
         UserAccount newUserAccount = userAccountMapper.selectByUsername(account.getUsername());
+        if (newUserAccount == null) {
+            return null;
+        }
         if (BCryptPasswordUtil.verifyPassword(account.getPassword(),newUserAccount.getPassword())) {
             return newUserAccount;
         }

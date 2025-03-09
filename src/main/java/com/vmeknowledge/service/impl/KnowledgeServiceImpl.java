@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -87,23 +88,4 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 
         return updatedKnowledgeResult;
     }
-
-    @Override
-    public void updateTagsById(String id, List<String> tags) {
-        Criteria criteria = Criteria.where("_id").is(id);
-        Update update = new Update();
-        update.set("tags", tags);
-        Knowledge updatedKnowledgeResult = mongoTemplate.findAndModify(
-                new Query(criteria),
-                update,
-                FindAndModifyOptions.options().returnNew(true),
-                Knowledge.class
-        );
-
-        if (updatedKnowledgeResult == null) {
-            throw new IllegalArgumentException("Knowledge not found with ID: " + id);
-        }
-
-    }
-
 }

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
+//@Component
 public class RateLimitInterceptor implements HandlerInterceptor {
 
     // 使用Guava Cache存储IP和请求计数

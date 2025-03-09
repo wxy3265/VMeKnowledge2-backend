@@ -58,13 +58,4 @@ public class KnowledgeController {
         return Result.success(updateVisibility);
     }
 
-    /**
-     * 知识标签选择与删除
-     */
-    @PutMapping("/tag/{id}")
-    public Result updateTag(@PathVariable String id,@RequestBody List<String> tags){
-        knowledgeService.updateTagsById(id,tags);
-        return Result.success();
-    }
-
 }

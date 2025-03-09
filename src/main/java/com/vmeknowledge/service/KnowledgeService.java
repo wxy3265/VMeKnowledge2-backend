@@ -16,6 +16,4 @@ public interface KnowledgeService {
     Knowledge updateKnowledge(String id, Knowledge updatedKnowledge);
 
     Knowledge updateVisibility(String id, int visibility);
-
-    void updateTagsById(String id, List<String> tags);
 }
