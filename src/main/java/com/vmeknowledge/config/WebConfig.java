@@ -7,20 +7,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@Configuration
+@Configuration
 public class WebConfig implements WebMvcConfigurer {
-//
-//    @Autowired
-//    private LoginCheckInterceptor loginCheckinterceptor;
-//
+
+    @Autowired
+    private LoginCheckInterceptor loginCheckinterceptor;
+
 //    @Autowired
 //    private RateLimitInterceptor rateLimitInterceptor;
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(rateLimitInterceptor)
 //                .addPathPatterns("/**"); // 配置需要限流的接口路径
-//        registry.addInterceptor(loginCheckinterceptor).addPathPatterns("/**")
-//                .excludePathPatterns("/error");
-//    }
+        registry.addInterceptor(loginCheckinterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/error");
+    }
 }
