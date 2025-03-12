@@ -23,7 +23,6 @@ public class UserAccountServiceImpl implements UserAccountService {
             return newUserAccount;
         }
         else return null;
-
     }
 
     @Override

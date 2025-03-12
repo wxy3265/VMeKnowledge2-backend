@@ -4,9 +4,11 @@ import com.vmeknowledge.common.Result;
 import com.vmeknowledge.pojo.Knowledge;
 import com.vmeknowledge.service.KnowledgeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -56,6 +58,21 @@ public class KnowledgeController {
         log.info("更新可见性：{}", visibility);
         Knowledge updateVisibility = knowledgeService.updateVisibility(id, visibility);
         return Result.success(updateVisibility);
+    }
+
+    @GetMapping("/search")
+    public Result searchKnowledge(
+            @RequestParam @NotBlank(message = "关键词不能为空") String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        try {
+            log.info("搜索知识，关键词：{}，页码：{}，每页大小：{}", keyword, page, size);
+            List<Knowledge> result = knowledgeService.searchKnowledge(keyword, page, size);
+            return Result.success(result);
+        } catch (IOException e) {
+            log.error("搜索异常：{}", e.getMessage());
+            return Result.error("搜索失败：" + e.getMessage());
+        }
     }
 
 }
